@@ -15,12 +15,8 @@ dotenv.config();
     try {
         // DB setup
         const dataSource = await getDataSource();
-        console.log('Connecting to database...');
         await dataSource.initialize();
-        console.log('Database connection established');
         diContainer.bind(TYPES.DB).toConstantValue(dataSource);
-
-        console.log('Database connected successfully');
 
         // Create app server
         const app = new InversifyExpressServer(diContainer, null, {
